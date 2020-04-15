@@ -1,0 +1,65 @@
+//  Clearfix
+@mixin clear-float {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+// Font face
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+  $src: null;
+
+  $extmods: (
+    eot: "?",
+    svg: "#" + str-replace($name, " ", "_")
+  );
+
+  $formats: (
+    otf: "opentype",
+    ttf: "truetype"
+  );
+
+  @each $ext in $exts {
+    $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+  }
+
+  @font-face {
+    font-family: quote($name);
+    font-style: $style;
+    font-weight: $weight;
+    src: $src;
+  }
+}
+
+// TEXT
+@mixin font($name, $style: normal, $weight: normal) {
+  font-family: $name;
+  font-style: $style;
+  font-weight: $weight;
+}
+
+@mixin font-size($size: 1.6) {
+  font-size: ($size * 1) + px;
+  font-size: ($size / 16) + rem;
+}
+
+@mixin line-height($size: 1.6) {
+  line-height: ($size * 1) + px;
+  line-height: ($size / 16) + rem;
+}
+
+//  BORDER RADIUS
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+//  Box Sizing
+@mixin box-sizing($value) {
+  -moz-box-sizing: $value;
+  -webkit-box-sizing: $value;
+  box-sizing: $value;
+}

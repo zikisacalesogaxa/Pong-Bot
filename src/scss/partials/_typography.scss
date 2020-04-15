@@ -1,0 +1,38 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+table {
+  margin: 0;
+  padding: 0;
+  @include font(helvetica, normal, 300);
+}
+
+h1 {
+  @include font-size(46);
+  @include line-height(41);
+  font-weight: bold;
+}
+
+h2 {
+  @include font-size(43);
+  @include line-height(49);
+}
+
+h5 {
+  @include font-size(19);
+  @include line-height(23);
+}
+
+h6 {
+  @include font-size(15);
+  @include line-height(18);
+}
+
+p {
+  @include font-size(29);
+  @include line-height(34);
+}
